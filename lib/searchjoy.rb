@@ -21,7 +21,12 @@ module Searchjoy
   mattr_accessor :conversion_name
 end
 
-if defined?(Searchkick)
+begin
+  require 'searchkick'
+rescue LoadError
+end
+
+if defined?(Searchkick::Search)
   module Searchkick
     module Search
       include Searchjoy::Track
